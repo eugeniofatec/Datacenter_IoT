@@ -1,0 +1,94 @@
+version: "3.2"
+
+services:
+
+  #  Mosquitto
+  mqtt:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: always
+    volumes:
+      - ./mosquitto/:/mosquitto/:rw
+    ports:
+      - 1884:1883
+      - 9001:9001
+    networks:
+      - system
+
+  #  InfluxDB
+  influxdb:
+    container_name: InfluxDB
+    image: influxdb:1.8
+    restart: always
+    ports:
+      - 8089:8086
+    volumes:
+      - influxdb_data:/root/influxdb/data
+    environment:
+      - INFLUXDB_DB=Monitoramento
+      # - INFLUXDB_ADMIN_USER=teste
+      # - INFLUXDB_ADMIN_PASSWORD=teste
+    networks:
+      - system
+
+  #  Grafana 
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-enterprise:8.2.1
+    restart: always
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - 3000:3000
+    links:
+      - influxdb:8086
+
+    networks:
+      - system
+
+  #  Node Red
+  node_red:
+    container_name: nodeRed
+    image: nodered/node-red
+    restart: always
+    ports:
+      - 1880:1880
+    volumes:
+      - ./node_red:/data
+    links:
+      - mqtt:1883
+      - influxdb:8086
+    networks:
+      - system
+
+  #  Plata do Data Center
+  plantaDC:
+    container_name: plantaDC
+    image: "node:8"
+    restart: always
+    command: sh -c "npm install && npm start"
+    ports:
+      - 5000:5000
+      # environment:
+      # - INFLUXDB_ADMIN_USER=teste
+      # - INFLUXDB_ADMIN_PASSWORD=teste
+    working_dir: /home/app
+    volumes:
+      - ./plantaDC:/home/app
+    links:
+      - influxdb:8086
+    networks:
+      - system
+
+networks:
+  system:
+    driver: bridge
+
+volumes:
+  influxdb_data:
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ${APP_PATH}/grafana

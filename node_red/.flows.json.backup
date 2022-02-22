@@ -1,0 +1,728 @@
+[
+    {
+        "id": "9a439d83.d39c",
+        "type": "tab",
+        "label": "Projeto",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f120127a1e2f2e15",
+        "type": "mqtt-broker",
+        "name": "mqtt-broker [mosquitto:1883]",
+        "broker": "mosquitto",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c8a83608.75f7b8",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "tls": "bc72f9f5.ce3fb8",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "Hello World",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "bc72f9f5.ce3fb8",
+        "type": "tls-config",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "Projeto_IoT_TG.cert.pem",
+        "keyname": "Projeto_IoT_TG.private.key",
+        "caname": "root-CA.crt",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "68c15ab27d40ad9f",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "InfluxDB:8086/Monitoramento",
+        "usetls": false,
+        "tls": "bc72f9f5.ce3fb8",
+        "influxdbVersion": "1.8-flux",
+        "url": "http://InfluxDB:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "fdd65781.15df6",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AB0102",
+        "topic": "CPT/DC/AB0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "a24c8413.8470f",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AE0102",
+        "topic": "CPT/DC/AE0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 120,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "a313b562.413428",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AH0102",
+        "topic": "CPT/DC/AH0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 180,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "a08a2d7e.5fe348",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AK0102",
+        "topic": "CPT/DC/AK0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "5a12f87d.5cc2d",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AN0102",
+        "topic": "CPT/DC/AN0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 300,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "3656be0a.e83762",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AR0102",
+        "topic": "CPT/DC/AR0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "cd1e08af.a4f91",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AB0910",
+        "topic": "CPT/DC/AB0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 480,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "dc10ad69.6b63d",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AE0910",
+        "topic": "CPT/DC/AE0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 540,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "e821f586.56ac08",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AH0910",
+        "topic": "CPT/DC/AH0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 600,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "606cae85.76ddb8",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AK0910",
+        "topic": "CPT/DC/AK0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 660,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "bdde67a4.25b9f",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AN0910",
+        "topic": "CPT/DC/AN0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 720,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "4bbe19fa.2a5cd8",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AR0910",
+        "topic": "CPT/DC/AR0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 780,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "33f22745.3d5968",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AT0910",
+        "topic": "CPT/DC/AT0910",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 840,
+        "wires": [
+            [
+                "f1a9f5cb.3f05b"
+            ]
+        ]
+    },
+    {
+        "id": "4b2210e8.c14dd8",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AB1718",
+        "topic": "CPT/DC/AB1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 940,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "84830410.4e0248",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AE1718",
+        "topic": "CPT/DC/AE1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 1000,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "19aceae5.79e1b5",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AH1718",
+        "topic": "CPT/DC/AH1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 1060,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "53eab52d.81eda4",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AK1718",
+        "topic": "CPT/DC/AK1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 1120,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "1d049dda.f4a56a",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AN1718",
+        "topic": "CPT/DC/AN1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 1180,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "a37ddc22.72ad28",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AR1718",
+        "topic": "CPT/DC/AR1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 1240,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "2cacf66a.13516a",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AT1718",
+        "topic": "CPT/DC/AT1718",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 1300,
+        "wires": [
+            [
+                "f459ef1b.2a3208"
+            ]
+        ]
+    },
+    {
+        "id": "7eead1a1.eb921",
+        "type": "function",
+        "z": "9a439d83.d39c",
+        "name": "Metadados",
+        "func": "x = msg.topic.split(\"/\")\n\nmsg.payload = {\n    \"Temperatura\":msg.payload.Temperatura,\n    \"Umidade\":msg.payload.Umidade,\n    \"Predio\":x[0],\n    \"Sala\":x[1],\n    \"PM\":x[2],\n    \"Erro_Max_Temp\":parseFloat(msg.payload.Temperatura)+2,\n    \"Erro_Min_Temp\":parseFloat(msg.payload.Temperatura)-2,\n    \"Erro_Max_Umid\":parseFloat(msg.payload.Umidade)+5,\n    \"Erro_Min_Umid\":parseFloat(msg.payload.Umidade)-5,\n    \"time\":msg.payload.time\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "989f6995.cb97d",
+                "3dedd2d7.377386",
+                "2822400f.9e8768"
+            ]
+        ]
+    },
+    {
+        "id": "f1a9f5cb.3f05b",
+        "type": "function",
+        "z": "9a439d83.d39c",
+        "name": "Metadados",
+        "func": "x = msg.topic.split(\"/\")\n\nmsg.payload = {\n    \"Temperatura\":msg.payload.Temperatura,\n    \"Umidade\":msg.payload.Umidade,\n    \"Predio\":x[0],\n    \"Sala\":x[1],\n    \"PM\":x[2],\n    \"Erro_Max_Temp\":parseFloat(msg.payload.Temperatura)+2,\n    \"Erro_Min_Temp\":parseFloat(msg.payload.Temperatura)-2,\n    \"Erro_Max_Umid\":parseFloat(msg.payload.Umidade)+5,\n    \"Erro_Min_Umid\":parseFloat(msg.payload.Umidade)-5,\n    \"time\":msg.payload.time\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 660,
+        "wires": [
+            [
+                "a667157c.abccb8",
+                "fca5323b.d2de",
+                "a17728bb.072a"
+            ]
+        ]
+    },
+    {
+        "id": "f459ef1b.2a3208",
+        "type": "function",
+        "z": "9a439d83.d39c",
+        "name": "Metadados",
+        "func": "x = msg.topic.split(\"/\")\n\nmsg.payload = {\n    \"Temperatura\":msg.payload.Temperatura,\n    \"Umidade\":msg.payload.Umidade,\n    \"Predio\":x[0],\n    \"Sala\":x[1],\n    \"PM\":x[2],\n    \"Erro_Max_Temp\":parseFloat(msg.payload.Temperatura)+2,\n    \"Erro_Min_Temp\":parseFloat(msg.payload.Temperatura)-2,\n    \"Erro_Max_Umid\":parseFloat(msg.payload.Umidade)+5,\n    \"Erro_Min_Umid\":parseFloat(msg.payload.Umidade)-5,\n    \"time\":msg.payload.time\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1120,
+        "wires": [
+            [
+                "f753d1c7.8f3e4",
+                "c9d1d643.368f78",
+                "87ef086d.156eb8"
+            ]
+        ]
+    },
+    {
+        "id": "f753d1c7.8f3e4",
+        "type": "influxdb out",
+        "z": "9a439d83.d39c",
+        "influxdb": "68c15ab27d40ad9f",
+        "name": "InfluxDB",
+        "measurement": "Sensores",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "Monitoramento",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 640,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "c9d1d643.368f78",
+        "type": "debug",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "a667157c.abccb8",
+        "type": "influxdb out",
+        "z": "9a439d83.d39c",
+        "influxdb": "68c15ab27d40ad9f",
+        "name": "InfluxDB",
+        "measurement": "Sensores",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "Monitoramento",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 640,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "fca5323b.d2de",
+        "type": "debug",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "989f6995.cb97d",
+        "type": "influxdb out",
+        "z": "9a439d83.d39c",
+        "influxdb": "68c15ab27d40ad9f",
+        "name": "InfluxDB",
+        "measurement": "Sensores",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "Monitoramento",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3dedd2d7.377386",
+        "type": "debug",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2822400f.9e8768",
+        "type": "mqtt out",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "topic": "DC/Externo",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c8a83608.75f7b8",
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "64bf3565.42dc34",
+        "type": "mqtt in",
+        "z": "9a439d83.d39c",
+        "name": "Publicador_CPT_DC_AT0102",
+        "topic": "CPT/DC/AT0102",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "f120127a1e2f2e15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 160,
+        "y": 420,
+        "wires": [
+            [
+                "7eead1a1.eb921"
+            ]
+        ]
+    },
+    {
+        "id": "a17728bb.072a",
+        "type": "mqtt out",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "topic": "DC/Externo",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c8a83608.75f7b8",
+        "x": 650,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "87ef086d.156eb8",
+        "type": "mqtt out",
+        "z": "9a439d83.d39c",
+        "name": "",
+        "topic": "DC/Externo",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c8a83608.75f7b8",
+        "x": 650,
+        "y": 1060,
+        "wires": []
+    }
+]

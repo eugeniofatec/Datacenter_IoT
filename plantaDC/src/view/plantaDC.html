@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Planta DC</title>
+</head>
+
+<style type="text/css">
+	body {
+		margin: 0px;
+	}
+
+	#map {
+		display: flex;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		margin-top: 10%;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	center {
+		position: absolute;
+		height: 10%;
+		width: 100%;
+	}
+
+	#map iframe {
+		position: absolute;
+		height: 70%;
+		width: 100%;
+	}
+
+	.block {
+		width: calc(4.56% - 6px);
+		height: calc(8% - 4px);
+		margin: 2px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		border-style: solid;
+		border-width: 2px;
+		border-color: transparent;
+		position: relative;
+		font-size: larger;
+		font-weight: 700;
+	}
+
+	*::after {
+		font-size: medium;
+		padding: 2px;
+		display: none;
+		position: absolute;
+		top: -10px;
+		right: -20px;
+		width: auto;
+		text-align: center;
+		background-color: #fef4c5;
+		border: 1px solid #d4b943;
+		border-radius: 2px;
+		z-index: 100;
+	}
+
+	.ignite {
+		border-color: #000000;
+	}
+
+	.noData {
+		border-color: #00000015;
+	}
+
+	.noData::after {
+		content: "Sem dados";
+	}
+
+	.noData:hover::after {
+		display: block;
+	}
+
+	.safe {
+		background-color: #3CB371;
+	}
+
+	.safe::after {
+		content: "seguro";
+	}
+
+	.safe:hover::after {
+		display: block;
+	}
+
+
+	.alert {
+		background-color: #FFFF00;
+	}
+
+	.alert::after {
+		content: "atenção";
+	}
+
+	.alert:hover::after {
+		display: block;
+	}
+
+	.danger {
+		background-color: #FF0000;
+	}
+
+	.danger::after {
+		content: "perigo";
+	}
+
+	.danger:hover::after {
+		display: block;
+	}
+
+	.hack {
+		background-color: #4F4F4F;
+	}
+
+	.hack::after {
+		content: "Hack";
+	}
+
+	.hack:hover::after {
+		display: block;
+	}
+
+	.hotHall {
+		background-color: #F0FFFF;
+	}
+
+	.hotHall::after {
+		content: "Corredor quente";
+	}
+
+	.hotHall:hover::after {
+		display: block;
+	}
+
+	.space {
+		width: 100%;
+		height: 25px;
+	}
+</style>
+
+<body>
+
+	<center>
+		<h1>PLANTA DO DATACENTER</h1>
+		<br><br>
+	</center>
+
+	<div id="map"></div>
+
+	<div class="space"></div>
+
+	<script type="text/javascript">
+
+		window.onload = () => { if (createMap()) VerDados(0, false, 0); };
+
+		function createMap() {
+			const hall = 18;
+
+			const columns = ["00", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT"];
+
+			const hackList = [
+				[
+					[3, 4], [2, 19]
+				],
+				[
+					[7, 8], [2, 19]
+				],
+				[
+					[11, 12], [2, 19]
+				],
+				[
+					[15, 16], [2, 19]
+				]
+			];
+
+			const hotHallList = [
+				[
+					[5, 6], [2, 19]
+				],
+				[
+					[13, 14], [2, 19]
+				]
+			];
+
+			var map = document.getElementById("map");
+
+			map.innerHTML = "";
+
+			for (let e = 0; e <= hall; e++) {
+				eString = String(e);
+				if (eString.length == 1) eString = "0" + eString;
+
+				for (let i = 0; i < columns.length; i++) {
+
+					if (e == 0) {
+						map.innerHTML += '<div class="block" id="' + (columns[i] + eString) + '">' + columns[i] + '</div>';
+					}
+					else {
+						if (i == 0) {
+							map.innerHTML += '<div class="block" id="' + (columns[i] + eString) + '">' + eString + '</div>';
+						}
+						else {
+							let valid = true;
+
+							let coordinate = e + "-" + i;
+
+							for (let lock = 0; lock < hackList.length; lock++)
+								for (let x = hackList[lock][0][0]; x <= hackList[lock][0][1]; x++)
+									for (let y = hackList[lock][1][0]; y <= hackList[lock][1][1]; y++)
+										if (coordinate == (x + "-" + y)) {
+											valid = false;
+											map.innerHTML += '<div class="block ignite hack" id="' + (columns[i] + eString) + '"></div>';
+										}
+
+							for (let lock = 0; lock < hotHallList.length; lock++)
+								for (let x = hotHallList[lock][0][0]; x <= hotHallList[lock][0][1]; x++)
+									for (let y = hotHallList[lock][1][0]; y <= hotHallList[lock][1][1]; y++)
+										if (coordinate == (x + "-" + y)) {
+											valid = false;
+											map.innerHTML += '<div class="block ignite hotHall" id="' + (columns[i] + eString) + '"></div>';
+										}
+
+							if (valid)
+								map.innerHTML += '<div class="block noData" id="' + (columns[i] + eString) + '"></div>';
+						}
+					}
+				}
+			}
+			return true;
+		}
+
+		function VerDados(counter, reload, noData) {
+
+			if (counter == 50 || noData == 2) { if (createMap()) VerDados(0, false, 0); }
+			else {
+				counter++
+
+				var url = "/lerdados";
+
+				let ajax = new XMLHttpRequest();
+
+				ajax.open("GET", url, true);
+
+				ajax.onreadystatechange = function () {
+					if (this.readyState == 4 && this.status == 200) {
+						if (!reload) {
+							var dados = JSON.parse(ajax.responseText)
+							if (dados.length == 0) noData++;
+							else {
+								for (let i = 0; i < dados.length; i++) {
+									let y = dados[i].PM.slice(0, 2);
+									let x = [dados[i].PM.slice(2, 4), dados[i].PM.slice(-2)]
+									let temperature = dados[i].Temperatura;
+
+									for (let e = 0; e < x.length; e++) {
+
+										let sensorElement = document.getElementById(y + x[e]);
+
+										sensorElement.classList.remove("danger");
+										sensorElement.classList.remove("alert");
+										sensorElement.classList.remove("safe");
+										sensorElement.classList.remove("noData");
+
+										//se estiver fora dos limiares recebe vermelho
+										if (temperature < 20 || temperature > 25) { sensorElement.classList.add("danger"); }
+
+										//se estiver em cima dos limiares recebe amarelo
+										else if ((temperature >= 20 && temperature < 22) || (temperature >= 23 && temperature <= 25)) { sensorElement.classList.add("alert"); }
+
+										//se estiver dentro dos limiares recebe verde
+										else { sensorElement.classList.add("safe"); }
+
+										sensorElement.classList.add("ignite");
+										sensorElement.innerText = temperature + " c";
+									}
+								}
+							}
+							setTimeout(() => { VerDados(counter, false, noData) }, 5000)
+						}
+						else if (createMap()) VerDados(0, false, 0);
+
+					}
+					else if (this.readyState == 4 && this.status == 500) {
+						console.log(ajax.responseText);
+						if (!reload) document.getElementById("map").innerHTML = '<iframe src="/erro/500" frameborder="0"></iframe>';
+						setTimeout(() => { VerDados(counter, true, 0); }, 5000)
+					}
+				}
+
+				ajax.send();
+
+			}
+
+			return 0;
+		}
+
+	</script>
+
+</body>
+
+</html>
