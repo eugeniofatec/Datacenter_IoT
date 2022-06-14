@@ -1,0 +1,58 @@
+---
+- hosts: localhost
+  become: true
+  become_method: sudo
+  tasks:    
+
+    # Docker installation
+      - name: Install dependencies of docker
+        apt:
+          name: "{{item}}"
+          install_recommends: yes
+          state: present
+        loop:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+
+      - name: Add Docker GPG apt Key
+        apt_key:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          state: present
+      
+      - name: Add Docker Repository
+        apt_repository:
+          repo: deb https://download.docker.com/linux/ubuntu focal present
+          state: present
+   
+      - name: Install docker
+        apt:
+          name: "{{item}}"
+          install_recommends: yes
+          state: present
+        loop:
+          - docker-ce-cli
+          - docker-ce
+          - containerd.io
+
+      - name: Install pip3 
+        apt:
+          name: python3-pip
+          state: present
+
+      - name: Install Docker Module for Python
+        pip:
+          name:
+            - docker
+            - docker-compose
+    
+    # Container initialization
+      - name: Create and start containers
+        docker_compose:
+          project_src: ./
+          files:
+            - docker-compose.yml
+        environment: 
+          APP_PATH: "{{ playbook_dir }}"
