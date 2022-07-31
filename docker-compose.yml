@@ -8,7 +8,7 @@ services:
     image: eclipse-mosquitto
     restart: always
     volumes:
-      - ${APP_PATH}/mosquitto/:/mosquitto/:rw
+      - /opt/Datacenter/mosquitto/:/mosquitto/:rw
     ports:
       - 1884:1883
       - 9001:9001
@@ -51,7 +51,7 @@ services:
     ports:
       - 1880:1880
     volumes:
-      - ${APP_PATH}/node_red:/data
+      - /opt/Datacenter/node_red:/data
     links:
       - mqtt:1883
       - influxdb:8086
@@ -68,7 +68,7 @@ services:
       - 5000:5000
     working_dir: /home/app
     volumes:
-      - ${APP_PATH}/plantaDC:/home/app
+      - /opt/Datacenter/plantaDC:/home/app
     links:
       - influxdb:8086
     networks:
@@ -85,4 +85,4 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: ${APP_PATH}/grafana
+      device: /opt/Datacenter/grafana
