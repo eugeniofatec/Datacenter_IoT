@@ -49,10 +49,14 @@
             - docker-compose
     
     # Container initialization
+
+      - name: Clone a repo with separate git directory
+        ansible.builtin.git:
+          repo: https://github.com/eugenioalmeida/Datacenter_IoT.git
+          dest: /opt/Datacenter
+
       - name: Create and start containers
         docker_compose:
-          project_src: ./
+          project_src: /opt/Datacenter
           files:
             - docker-compose.yml
-        environment: 
-          APP_PATH: "{{ playbook_dir }}"
