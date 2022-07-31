@@ -8,7 +8,7 @@ services:
     image: eclipse-mosquitto
     restart: always
     volumes:
-      - ./mosquitto/:/mosquitto/:rw
+      - ${APP_PATH}/mosquitto/:/mosquitto/:rw
     ports:
       - 1884:1883
       - 9001:9001
@@ -51,7 +51,7 @@ services:
     ports:
       - 1880:1880
     volumes:
-      - ./node_red:/data
+      - ${APP_PATH}/node_red:/data
     links:
       - mqtt:1883
       - influxdb:8086
@@ -68,7 +68,7 @@ services:
       - 5000:5000
     working_dir: /home/app
     volumes:
-      - ./plantaDC:/home/app
+      - ${APP_PATH}/plantaDC:/home/app
     links:
       - influxdb:8086
     networks:
