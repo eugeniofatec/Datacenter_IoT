@@ -8,7 +8,7 @@ services:
     image: eclipse-mosquitto
     restart: always
     volumes:
-      - ./mosquitto/:/mosquitto/:rw
+      - ${APP_PATH}/mosquitto/:/mosquitto/:rw
     ports:
       - 1884:1883
       - 9001:9001
@@ -26,8 +26,6 @@ services:
       - influxdb_data:/root/influxdb/data
     environment:
       - INFLUXDB_DB=Monitoramento
-      # - INFLUXDB_ADMIN_USER=teste
-      # - INFLUXDB_ADMIN_PASSWORD=teste
     networks:
       - system
 
@@ -42,7 +40,6 @@ services:
       - 3000:3000
     links:
       - influxdb:8086
-
     networks:
       - system
 
@@ -54,7 +51,7 @@ services:
     ports:
       - 1880:1880
     volumes:
-      - ./node_red:/data
+      - ${APP_PATH}/node_red:/data
     links:
       - mqtt:1883
       - influxdb:8086
@@ -69,12 +66,9 @@ services:
     command: sh -c "npm install && npm start"
     ports:
       - 5000:5000
-      # environment:
-      # - INFLUXDB_ADMIN_USER=teste
-      # - INFLUXDB_ADMIN_PASSWORD=teste
     working_dir: /home/app
     volumes:
-      - ./plantaDC:/home/app
+      - ${APP_PATH}/plantaDC:/home/app
     links:
       - influxdb:8086
     networks:
